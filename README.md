@@ -41,6 +41,10 @@ Approved API / partner feed / user export / manual review
 
 See [docs/source-adapters.md](docs/source-adapters.md) for the compliance boundary, [docs/roadmap.md](docs/roadmap.md) for the next integrations, and \`db/schema.sql\` for the PostgreSQL-ready data model.
 
+## Manual imports and review
+
+\`CsvImportAdapter\` provides a local path for authorized user exports, with strict validation for European listings and clearly labelled \`sold\` versus \`asking\` evidence. \`GET /review-queue\` exposes items that need authenticity or comparable-price review. See [docs/manual-imports.md](docs/manual-imports.md) for the CSV contract.
+
 ## Credentials and source access
 
 No marketplace credentials, browser automation, scraping, or protection-bypass logic is included. To connect a live source, obtain its written permission or official API/partner/feed access, then implement an adapter that returns the internal normalized contract.

@@ -61,3 +61,15 @@ class Opportunity:
     resale_floor_met: bool
     authenticity_note: str
     rationale: tuple[str, ...]
+
+
+class ReviewSeverity(str, Enum):
+    BLOCKING = "blocking"
+    REQUIRED = "required"
+
+
+@dataclass(frozen=True)
+class ReviewItem:
+    listing_id: str
+    severity: ReviewSeverity
+    reasons: tuple[str, ...]

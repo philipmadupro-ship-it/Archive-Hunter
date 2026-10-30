@@ -7,6 +7,7 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 
 from .adapters import FixtureAdapter
+from .review import build_review_queue
 from .service import discover_opportunities
 
 app = FastAPI(title="ARCHIVE HUNTER", version="0.1.0")
@@ -26,3 +27,8 @@ def health() -> dict[str, str]:
 @app.get("/opportunities")
 def opportunities() -> list[dict]:
     return [asdict(item) for item in discover_opportunities(FixtureAdapter())]
+
+
+@app.get("/review-queue")
+def review_queue() -> list[dict]:
+    return [asdict(item) for item in build_review_queue(discover_opportunities(FixtureAdapter()))]
