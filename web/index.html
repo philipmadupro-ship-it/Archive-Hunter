@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ARCHIVE HUNTER</title>
+    <style>
+      body { background:#10100f; color:#f3f0e7; font:16px system-ui,sans-serif; margin:0; padding:3rem; }
+      main { max-width:760px; margin:auto; } h1 { letter-spacing:.16em; font-size:1rem; color:#b8a779; }
+      article { background:#1b1b18; border:1px solid #38372e; border-radius:14px; padding:1.5rem; margin-top:1.5rem; }
+      .metric { color:#b8a779; font-size:1.6rem; } small { color:#aaa79d; }
+    </style>
+  </head>
+  <body><main><h1>ARCHIVE HUNTER / FIXTURE MODE</h1><div id="results">Loading opportunity intelligence…</div></main>
+  <script>
+    fetch('/opportunities').then(r => r.json()).then(items => document.querySelector('#results').innerHTML = items.map(item => \`
+      <article><small>\${item.listing.country_code} · \${item.listing.condition} · \${item.listing.authenticity}</small>
+      <h2>\${item.listing.brand} — \${item.listing.title}</h2><p class="metric">Opportunity \${item.opportunity_score}/100</p>
+      <p>Ask €\${item.listing.asking_price_eur} · Sold-only reference €\${item.fair_value_eur} · Liquidity \${item.liquidity_score}/100</p>
+      <p>\${item.authenticity_note}</p></article>\`).join(''));
+  </script></body>
+</html>
